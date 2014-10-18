@@ -2,8 +2,7 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 import processing.serial.*;
 Minim minim;
-AudioPlayer song;
-AudioInput line;
+AudioInput song;
 AudioOutput out;
 BeatDetect beat;
 BeatListener bl;
@@ -33,8 +32,8 @@ void setup()
   //instantiate minim object
   minim = new Minim(this); 
   out = minim.getLineOut(); 
-  song = minim.loadFile(songFile);
-  //line = minim.getLineIn(Minim.STEREO, 512);
+  //song = minim.loadFile(songFile);
+  song = minim.getLineIn(Minim.STEREO, 512);
     
   //create beat detection object
   beat = new BeatDetect(song.bufferSize(), song.sampleRate());
@@ -43,7 +42,7 @@ void setup()
   bl = new BeatListener(beat, song);
 
   sendCmd("group1on");
-  song.play();
+  //song.play();
 
 }
 
@@ -58,7 +57,7 @@ void draw()
   //textFont(font, 15);
   fill(100, 255, 0);
   //Print Artist/SongName to top of window
-  text(song.getMetaData().author() + " - " + song.getMetaData().title(), 40, 40);
+  //text(song.getMetaData().author() + " - " + song.getMetaData().title(), 40, 40);
 
   
 
@@ -91,7 +90,7 @@ void draw()
   //draw oscillator.  Color of oscillator will turn R, G, B, depending on beat detected
   for (int i = 0; i < out.bufferSize () - 1; i++) {
     stroke(oscillatorColor);
-    line(i, 310 + song.mix.get(i)*250, i+1, 310 + song.mix.get(i+1)*250);
+    //line(i, 310 + song.mix.get(i)*250, i+1, 310 + song.mix.get(i+1)*250);
   }
 } 
 
@@ -112,11 +111,11 @@ void mousePressed() {
   //if (mouseX>30 && mouseX<50) {
     //co-ordinates for button area
     //if (mouseY>500 && mouseY<520) {
-      if (song.isPlaying()) {  //button function, ie play/pause
-        song.pause();
-      } else {
-        song.play();
-      }
+      //if (song.isPlaying()) {  //button function, ie play/pause
+      //  song.pause();
+      //} else {
+      //  song.play();
+      //}
     //}
   //}
 }
